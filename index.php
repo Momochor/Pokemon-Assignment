@@ -1,3 +1,9 @@
+<?php
+  $json = file_get_contents("data.json");
+  $data = json_decode($json,true);
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +23,12 @@
       <h1 class="text-white">Get your Pokemon!</h1>
       <div>
         <button class="btn btn-primary">
+          <!-- this is icon in button place -->
           <i class="fa fa-sign-in"></i> Login</button>
+          <button><i class="fa fa-thermometer-half" aria-hidden="true"></i></button>
+          <button><i class="fa fa-superpowers" aria-hidden="true"></i></button>
       </div>
+      
     </div>
     <table class="table table-dark">
       <thead>
@@ -33,12 +43,32 @@
         </tr>
       </thead>
       <tbody>
+      
+          <?php foreach($data as $element):?>
+            <tr>
+            <td><img src ="<?php echo $element["image"]["thumbnail"];?>"></td>
+            <td><span><?php echo $element["name"]["english"];?></span></td>
+            <td><span style="text-transform:uppercase"><?php echo $element["species"];?></span></td>
+            <td><?php echo $element["description"];?></td>
+            <td><?php echo $element["profile"]["weight"];?></td>
+            <td><?php echo $element["profile"]["height"];?></td>
+            <td><button>
 
-        <!-- Write your code here -->
+            <!-- This also is icons place. -->
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <i class="fa fa-thermometer-half" aria-hidden="true"></i>
+              <i class="fa fa-superpowers" aria-hidden="true"></i>
+              </button>
+            </tr>
+          <?php endforeach;?>
+       
       </tbody>
     </table>
 
   </div>
+            
+
+
   <!-- DNT MAKE ANY CHANGES ON THE CODE BELOW -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
